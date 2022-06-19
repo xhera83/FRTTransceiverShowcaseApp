@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>DAPI FRTTransceiver Showcase</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+   </head>
+   <body style="background-color: #0F0F0F;">
+      <form type="submit" action="/" method="get" id="formToSmartDoor" name="formToSmartDoor"></form>
+      <!-- FORM-GET SmartDoor webpage -->
+      <form type="submit" action="/printSummary" method="get" id="formToSummary" name="formToSummary"></form>
+      <!-- FORM PRINT SUMMARY -->
+      <form type="submit" action="/sensor" method="get" id="formToSensor" name="formToSensor"></form>
+      <!-- FORM-GET Sensor webpage -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <div class="container-fluid">
+            <a class="navbar-brand" onclick="document.getElementById('formToSmartDoor').submit()" >FRTTransceiver Showcase</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+               <ul class="navbar-nav">
+                  <li class="nav-item">
+                     <a class="nav-link" onclick="document.getElementById('formToSmartDoor').submit()" >SmartDoor</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" onclick="document.getElementById('formToSensor').submit()" >Sensor</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Summary
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><button type="submit" class="dropdown-item" name="task" value="webserver" form="formToSummary">Webserver</button></li>
+                        <li><button type="submit" class="dropdown-item" name="task" value="sensor" form="formToSummary">Sensor</button></li>
+                        <li><button type="submit" class="dropdown-item" name="task" value="smartDoor" form="formToSummary">SmartDoor</button></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <div class="container-fluid mx-auto mt-4 min-vh-100">
+         <div class="row justify-content-center">
+            <div class="col-7 shadow bg-secondary text-white rounded-4 border border-2 border-secondary p-3 m-3">
+               <p class="col-12 h3 p-2 m-2">Sensor data measurment</p>
+               <div class="col-12 shadow-lgs  rounded-4 m-2 p-4" style="background-color: #8F9BA6;">
+                  <p class="lead fs-6 p-2">
+                     Press 'Measure' to get new sensor data. <br>
+                     Press 'Clear' to flush sensor data buffer.
+                  </p>
+               </div>
+               <form action="/measure" id="formLightSensor" method="get"></form>
+               <!-- Das ist für lightsensor -->
+               <form action="/measure" id="formSensorUS" method="get"></form>
+               <!-- Das ist für ultrasonic sensor -->
+               <div class="col-12 shadow-lg  rounded-4 m-2 p-4" style="background-color: #8F9BA6;">
+                  <div class="row justify-content-center">
+                     <div class="col-5 m-3 p-3">
+                        <div class="col-12 p-3 mb-3 text-center border rounded-4 text-danger ">Lightsensor</div>
+                        <!--<div class="col-12 p-3 mb-3 text-center border rounded-4 "></div>-->
+                        <div class="col-12 d-grid gap-2">
+                           <button name="action" type="submit" value="measureLS" form="formLightSensor" class="btn btn-success btn-sm">Measure new sensor data</button>
+                           <button name="action" type="submit" value="clearLS" form="formLightSensor" class="btn btn-danger btn-sm">Clear buffer</button>
+                        </div>
+                     </div>
+                     <div class="col-5 m-3 p-3">
+                        <div class="col-12 p-3 mb-3 text-center border rounded-4 text-danger">Ultrasonic sensor</div>
+                        <!--<div class="col-12 p-3 mb-3 text-center border rounded-4 "></div>-->
+                        <div class="col-12 d-grid gap-2">
+                           <button name="action" type="submit" value="measureUS" form="formSensorUS" class="btn btn-success btn-sm">Measure new sensor data</button>
+                           <button name="action" type="submit" value="clearUS" form="formSensorUS" class="btn btn-danger btn-sm">Clear buffer</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+   </body>
+</html>
